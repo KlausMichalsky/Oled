@@ -45,7 +45,7 @@ long int counter = 0; // Contador de lecturas (opcional)
 void setup();
 #line 61 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 void loop();
-#line 86 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
+#line 87 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 uint16_t readAS5600Angle();
 #line 42 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 void setup()
@@ -79,13 +79,14 @@ void loop()
 
     counter++; // Incrementa el contador de lecturas
 
+    // Cada 1000 lecturas, envía mensaje por el UART al Pico para evitar saturar el puerto
     if (counter == 1000)
-    {                             // Cada 5 lecturas, envía mensaje de debug
+    {
         Serial1.println(degrees); // Manda angulo al Pico con un decimal
         counter = 0;              // Reinicia contador
     }
 
-    delay(0.1); // Espera 100 ms antes de siguiente lectura
+    delay(0.1); // Espera 0.1 ms antes de siguiente lectura
 }
 
 // FUNCION DE LECTURA DEL AS5600
