@@ -69,7 +69,7 @@ void loop()
     // Manda angulo al Pico con un decimal
     Serial1.println(degrees);
 
-    delay(100); // Espera 10 ms antes de siguiente lectura
+    delay(100); // Espera 100 ms antes de siguiente lectura
 }
 
 // FUNCION DE LECTURA DEL AS5600
