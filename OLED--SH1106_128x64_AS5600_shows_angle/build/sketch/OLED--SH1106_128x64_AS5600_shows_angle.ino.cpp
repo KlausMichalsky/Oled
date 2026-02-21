@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #line 1 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 // ========================================================================
-//          🔸 O L E D  -  A S 5 6 0 0   S H O W S   A N G L E 🔸
+//        🔸 O L E D  -  A S 5 6 0 0   S H O W S   A N G L E 🔸
 // ========================================================================
 //  Archivo    : OLED--SH1106_128x64_AS5600_shows_angle.ino
 //  Autor      : Klaus Michalsky
@@ -9,38 +9,18 @@
 //
 //  DESCRIPCION
 //  -----------------------------------------------------------------------
-//  - Lee el ángulo del sensor AS5600 conectado a GP26 (SDA) y GP27 (SCL)
-//    usando I2C.
-//  - Convierte el valor crudo de 12 bits (0–4095) a grados (0°–360°).
-//  - Manda el angulo actual al OLED SH1106 cada 200 ms.
-//  - Usa Wire1 para I2C independiente de los pines por defecto.
+//  - Lee ángulo del sensor AS5600 (GP26=SDA, GP27=SCL) vía I2C (Wire1).
+//  - Convierte valor crudo 12 bits (0–4095) a grados (0°–360°).
+//  - Envía ángulo al Pico por UART0 (GP0=TX, GP1=RX) cada 500 ms.
+//  - Debug por Serial USB.
 //
 //  HARDWARE
 //  -----------------------------------------------------------------------
-//  MCU     : Raspberry Pi Pico y RP2040-Zero
-//  OLED    : SH1106_128x64
-//  SENSOR  : AS5600
+//  MCU     : RP2040-Zero
+//  OLED    : SH1106_128x64 1.3" or 2.42"
+//  SENSOR  : AS5600 I2C
+//  UART0   : GP0=TX, GP1=RX (Pico)
 //
-// ESQUEMA DE CONEXIONES:
-//  -----------------------------------------------------------------------
-/*
- ┌──────────────┐          ┌───────────────┐
- │   Pico       │          │   Zero        │
- ├──────────────┤          ├───────────────┤
- │ GP0 (TX) ─────────────────▶ GP1 (RX)    │
- │ GP1 (RX) ◀───────────────── GP0 (TX)    │
- │ GND ─────────────────────── GND         │
- │ 3V3 ─────────────────────── 3V3         │
- └──────────────┘          └───────────────┘
-
- OLED SH1106 <-> Pico
- ┌──────────────┐
- │ SDA → GP4    │
- │ SCL → GP5    │
- │ VCC → 3.3V   │
- │ GND → GND    │
- └──────────────┘
-*/
 //  ESTADO
 //  -----------------------------------------------------------------------
 //  ✅ Funcional
@@ -59,13 +39,13 @@
 // SETUP
 // ========================================================================
 
-#line 60 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
+#line 40 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 void setup();
-#line 79 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
+#line 59 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 void loop();
-#line 99 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
+#line 79 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 uint16_t readAS5600Angle();
-#line 60 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
+#line 40 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle\\OLED--SH1106_128x64_AS5600_shows_angle.ino"
 void setup()
 {
     Serial.begin(115200);  // Comunicación Serial USB
@@ -98,7 +78,7 @@ void loop()
     // Manda angulo al Pico con un decimal
     Serial1.println(degrees);
 
-    delay(500); // Espera 500 ms antes de siguiente lectura
+    delay(100); // Espera 10 ms antes de siguiente lectura
 }
 
 // FUNCION DE LECTURA DEL AS5600
