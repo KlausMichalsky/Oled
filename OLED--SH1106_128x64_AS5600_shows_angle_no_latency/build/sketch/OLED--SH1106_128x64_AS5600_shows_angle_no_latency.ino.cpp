@@ -28,8 +28,7 @@
 //  ✅ Funcional
 // ========================================================================
 
-// DEFINICION DE LIBRERIAS Y VARIABLES
-//  -----------------------------------------------------------------------
+// DEFINICION DE LIBRERIAS Y VARIABLES ------------------------------------
 #include <Wire.h>
 
 #define AS5600_ADDR 0x36
@@ -41,14 +40,14 @@
 unsigned long lastSendTime = 0;
 float lastSentAngle = -1000;
 
-// ================= SETUP =================
-#line 43 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
+// SETUP ----------------------------------------------------------------
+#line 42 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
 void setup();
-#line 59 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
+#line 58 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
 void loop();
-#line 82 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
+#line 81 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
 uint16_t readAS5600Angle();
-#line 43 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
+#line 42 "C:\\Users\\Benutzer1\\Documents\\# Github repositories\\OLED--SH1106_128x64\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency\\OLED--SH1106_128x64_AS5600_shows_angle_no_latency.ino"
 void setup()
 {
     Serial.begin(115200);
@@ -64,7 +63,7 @@ void setup()
     Serial.println("Zero listo: leyendo AS5600 y enviando al Pico...");
 }
 
-// ================= LOOP =================
+// LOOP ----------------------------------------------------------------
 void loop()
 {
     uint16_t value = readAS5600Angle();
@@ -87,7 +86,7 @@ void loop()
     delay(1);
 }
 
-// ================= FUNCION AS5600 =================
+// FUNCION AS5600 ----------------------------------------------------------------
 uint16_t readAS5600Angle()
 {
     Wire1.beginTransmission(AS5600_ADDR);
