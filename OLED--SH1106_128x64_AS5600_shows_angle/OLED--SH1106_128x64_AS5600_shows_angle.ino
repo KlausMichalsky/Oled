@@ -33,6 +33,8 @@
 #define SDA_PIN 26 // Pin SDA AS5600
 #define SCL_PIN 27 // Pin SCL AS5600
 
+long int counter = 0; // Contador de lecturas (opcional)
+
 // ========================================================================
 // SETUP
 // ========================================================================
@@ -66,10 +68,16 @@ void loop()
     Serial.print(degrees);
     Serial.println("°");
 
-    // Manda angulo al Pico con un decimal
-    Serial1.println(degrees);
+    counter++; // Incrementa el contador de lecturas
 
-    delay(100); // Espera 100 ms antes de siguiente lectura
+    // Cada 1000 lecturas, envía mensaje por el UART al Pico para evitar saturar el puerto
+    if (counter == 1000)
+    {
+        Serial1.println(degrees); // Manda angulo al Pico con un decimal
+        counter = 0;              // Reinicia contador
+    }
+
+    delay(0.1); // Espera 0.1 ms antes de siguiente lectura
 }
 
 // FUNCION DE LECTURA DEL AS5600
