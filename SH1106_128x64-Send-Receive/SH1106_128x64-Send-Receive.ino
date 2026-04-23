@@ -1,7 +1,7 @@
 // ========================================================================
 //                 🔸 O L E D  -  S E N D   R E C E I V E 🔸
 // ========================================================================
-//  Archivo    : OLED--SH1106_128x64_send_receive.ino
+//  Archivo    : SH1106_128x64-Send-Receive.ino
 //  Autor      : Klaus Michalsky
 //  Fecha      : Feb-2026
 //
